@@ -1,11 +1,5 @@
 # CampusConnect – College Event & Club Management Portal
-> **4-Week Summer Training / Internship Project**  
-> **Student Name:** Anshul Jain  
-> **Enrollment No:** 01815603124  
-> **Department:** Information Technology  
-> **Degree:** Bachelor of Technology (B.Tech IT)  
-> **Affiliated to:** Guru Gobind Singh Indraprastha University (GGSIPU)  
-> **Institute:** Dr. Akhilesh Das Gupta Institute of Professional Studies (Formerly ADGITM), FC-26, Shastri Park, New Delhi  
+> 
 
 ---
 
@@ -61,7 +55,7 @@ CampusConnect provides a unified college web portal where:
 
 ## 5. Technology Stack
 * **Frontend:** HTML5 (Semantic elements), CSS3 (Custom Responsive Flexbox & Grid, CSS variables), JavaScript (DOM manipulation, canvas charts, live filtering).
-* **Backend:** PHP 7.4 / 8.x using **PHP Data Objects (PDO)** with prepared statements for 100% SQL injection prevention.
+* **Backend:** PHP 7.4 / 8.x using **PHP Data Objects (PDO)** with prepared statements to help prevent SQL injection
 * **Database:** MySQL / MariaDB (Relational schema with primary and foreign key constraints, `ON DELETE CASCADE`).
 * **Environment:** XAMPP (Apache Web Server + MySQL / phpMyAdmin).
 * **Development Tool:** Visual Studio Code.
@@ -82,7 +76,7 @@ users (id, name, email, password, role, department, phone, enrollment_no, create
 ```
 
 - **Unique Constraints:** Composite unique key `(event_id, student_id)` on `registrations` to mathematically prevent duplicate registrations.
-- **Security:** Passwords encrypted using bcrypt via `password_hash()` and verified with `password_verify()`.
+- **Security:** Passwords are securely hashed using PHP's `password_hash()` and verified with `password_verify()`.
 
 ---
 
@@ -179,52 +173,10 @@ For testing and internship viva demonstration, convenient one-click auto-fill bu
 
 ---
 
-## 10. Complete Demonstration Workflow for Internship Viva
 
-### Flow 1: Student Experience
-1. Navigate to `http://localhost/campusconnect/login.php` and click **Student (Anshul)**.
-2. View the **Student Dashboard** showing registered events.
-3. Click **Explore Events** &rarr; Use the live search bar or category filters.
-4. Open an event (e.g., *HackSphere 2026* or *Full-Stack Bootcamp*) &rarr; View remaining seats &rarr; Click **Register Now**.
-5. See registration confirmation toast &rarr; Redirected to **My Registrations**.
-6. View your digital ticket pass (`#CC-REG-XXXX`) or cancel registration if desired.
 
-### Flow 2: Organizer Experience
-1. Sign in as Organizer (`organizer.tech@campus.edu`).
-2. Notice the organizer dashboard showing club events and attendee totals.
-3. Click **Create New Event** &rarr; Submit a new workshop or duel.
-4. The event status is immediately marked as **Pending Approval**.
-5. Click **Participants** on any event to inspect the attendance list and trigger the printable roster.
 
-### Flow 3: Administrator Experience
-1. Sign in as Admin (`admin@campus.edu`).
-2. Inspect the **Admin Dashboard** with real-time KPI metrics and the HTML5 Canvas event distribution chart.
-3. See the pending event submitted by the organizer &rarr; Click **Approve**.
-4. The event is now published live and immediately accessible to all students in the public directory.
-5. Review **All Registrations** to monitor institution-wide student engagement.
-
----
-
-## 11. Viva Voce Preparation Guide (Frequently Asked Questions)
-
-**Q1: Why did you use PHP and MySQL instead of MERN stack or Laravel?**  
-*Answer:* As this is a 4-week summer training project, core PHP (PDO) and vanilla JavaScript allow direct understanding of request-response cycles, server-side session authentication, and database relational modeling without hidden framework abstractions.
-
-**Q2: How is SQL injection prevented?**  
-*Answer:* 100% of database interactions utilize PDO Prepared Statements with parameterized placeholders (`?`). Input parameters are sent separately from the SQL command, neutralizing malicious SQL commands.
-
-**Q3: How are passwords stored securely?**  
-*Answer:* Passwords are never stored as plain text. We use PHP's `password_hash($password, PASSWORD_DEFAULT)`, which generates a salted bcrypt hash. Verification is performed using `password_verify()`.
-
-**Q4: How does the system prevent duplicate event registrations?**  
-*Answer:* On the database layer, a composite unique key constraint `UNIQUE KEY (event_id, student_id)` guarantees uniqueness. On the application layer, `event_details.php` queries the database prior to rendering the registration form to check if the student has already registered.
-
-**Q5: What happens when an event reaches maximum capacity?**  
-*Answer:* The application queries `SELECT COUNT(*) FROM registrations WHERE event_id = ? AND status = 'confirmed'`. If this matches or exceeds `max_participants`, the registration button is disabled and replaced with an "Event Full" badge.
-
----
-
-## 12. Future Scope
+## 10. Future Scope
 - **Payment Gateway Integration:** Support for paid workshops and national-level fests via Razorpay / Stripe.
 - **Automated QR-Code Passes:** Generate scannable QR tickets on confirmation emails for mobile door check-ins.
 - **SMS & Email Notifications:** Automated deadline reminders and approval alerts via Twilio and PHPMailer.
